@@ -45,16 +45,42 @@
             not <bool_exp>
             not True -> False
             not False -> True
-        and: Combines Boolean expressions
+        and: Combines Boolean expressions (assume multiplication)
             <bool_exp1> and <bool_exp2>
             True and True -> True
             True and False -> False
             False and True -> False
             False and False -> False
-        or: Combines Boolean expressions
+        or: Combines Boolean expressions (assumed Addition)
             <bool_exp1> or <bool_exp2>
             True or True -> True
             True or False -> True
             False or True -> True
             False or False -> False
     Text Operators
+        +   Concatenation (text joining)
+            str1 + str2 + str3 + ...
+        * Repeatition (to repeat a text)
+            str * int   (It repeats the specified string for integer number of times)
+        Compare string
+            str1 <comparison_operator> str2
+        Unicode support large set of characters
+            - all languages
+            - symbols
+            - emoticons
+            - chr(unicode_number) -> character
+            - ord(character) -> unicode_number
+
+### Variables
+- Variable is a container to store a value (or an object).
+- Syntax:
+        <variable_name> = <value>
+        <variable_name> = <expression>  # expression evaluates to a single value
+        <variable_name> = input(<prompt>)
+        <variable_name> = <object>
+- Naming variables:
+    Use descriptive names for variables
+        - A variable name can contain letters (upper and lower), numbers, and underscore (_)
+        - A variable name must start with a letter or underscore
+        - A variable name shouldn't contain spaces
+        - A vairable is case-sensitive ('A' and 'a' are not same)
