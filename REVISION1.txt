@@ -1,0 +1,315 @@
+Python 3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> 
+>>> # Integers
+>>> 
+>>> 5
+5
+>>> 100
+100
+>>> -25
+-25
+>>> 44
+44
+>>> 0
+0
+>>> 7
+7
+-8
+-8
+
+
+# Floating-point numbers
+5.3
+5.3
+1.0
+1.0
+-3.001
+-3.001
+0.0
+0.0
+11.4
+11.4
+-3.1234
+-3.1234
+
+
+# strings (text values)
+
+"this is a good day"
+'this is a good day'
+'hello, world'
+'hello, world'
+
+"1234"
+'1234'
+''
+''
+""
+''
+
+"Thursday'
+SyntaxError: incomplete input
+'Friday"
+SyntaxError: incomplete input
+
+"hello@1234-5678"
+'hello@1234-5678'
+
+# Boolean values
+
+True
+True
+False
+False
+None
+
+
+
+# Arithmetic  operators
+
+# addition
+3 + 3       # + for addition
+6
+
+8 + 5
+13
+
+
+# substraction (-)
+
+11 - 8
+3
+
+400 - 275
+125
+
+
+# multipllication *
+
+3 * 4
+12
+
+45 * 35
+1575
+
+
+3 * 4 * 9 * 11
+1188
+
+5 + 3 * 2       # BODMAS - PEMDAS
+11
+
+'''
+P - ()
+E - **
+M - *
+D - /
+A - +
+S - -
+'''
+'\nP - ()\nE - **\nM - *\nD - /\nA - +\nS - -\n'
+
+
+'''
+PARENTHESES - ()
+BRACKETS - []
+BRACES - {}
+'''
+'\nPARENTHESES - ()\nBRACKETS - []\nBRACES - {}\n'
+
+5 + 3 * 2
+11
+
+# PEMDAS
+
+(5 + 3) * 2
+16
+
+
+# division /
+
+25 / 3
+8.333333333333334
+
+24 / 6
+4.0
+
+27 / 4
+6.75
+
+
+# floor (integer) division  //
+
+25 // 3
+8
+
+24 // 6
+4
+
+27 // 4
+6
+
+# modulus (remainder)  %
+
+25 % 3
+1
+
+24 % 6
+0
+27 % 4
+3
+
+
+# Exponent (power)
+
+5 * 5
+25
+5 ** 5
+3125
+
+2.5 ** 10
+9536.7431640625
+
+2 ** (1/2)
+1.4142135623730951
+3 ** (1/2)
+1.7320508075688772
+
+
+
+3 + 80 - 44 / 2 + (9-4.5) ** 3
+152.125
+
+
+# COMPARISON / RELATIONAL / BOOLEAN Operators
+
+# equal to (==), not equal to (!=), greater than (>), less than (<), greater than or equal to (>=), less than or equal to (<=)
+
+"A" == "a"
+False
+
+100 == 100
+True
+100 == 200
+False
+
+25 > 15
+True
+19 > 29
+False
+
+100 >= 25
+True
+
+100 <= 30
+False
+
+
+# LOGICAL OPERATORS - not, and & or
+
+True
+True
+not True
+False
+
+False
+False
+not False
+True
+
+100 > 50
+True
+not 100 > 50
+False
+
+not "A" == "a"
+True
+
+
+# bool_exp1 and  bool_exp2
+
+True and True
+True
+True and True and True and True
+True
+True and True and False and True and True   # all
+False
+
+100 + False
+100
+
+100 + True
+101
+
+true
+Traceback (most recent call last):
+  File "<pyshell#173>", line 1, in <module>
+    true
+NameError: name 'true' is not defined. Did you mean: 'True'?
+
+TRUE
+Traceback (most recent call last):
+  File "<pyshell#175>", line 1, in <module>
+    TRUE
+NameError: name 'TRUE' is not defined. Did you mean: 'True'?
+
+True
+True
+
+True and True
+True
+True and False
+False
+False and True
+False
+False and False
+False
+
+1 == 1 and 2 == 2
+True
+1 == 1 and 2 != 2
+False
+1 != 1 and 2 == 2
+False
+1 != 1 and 2 != 2
+False
+
+
+# bool_exp1 or bool_exp2
+
+True or True
+True
+True or False
+True
+False or True
+True
+False and False
+False
+
+
+True or True or True or True or True
+True
+False or False or False or False or False or True or False
+True
+
+1 == 1 or 2 == 2
+True
+1 == 1 or 2 != 2
+True
+1 != 1 or 2 == 2
+True
+1 != 1 or 2 != 2
+False
+
+"2" == "1 + 1"
+False
+
+
+"471"
+'471'
+
+471
+471
+
+
