@@ -1,0 +1,338 @@
+Python 3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> 
+>>> # Tex operators
+>>> 
+>>> # + (Concatination - Text joining) operator
+>>> 
+>>> "Hello" + "Babu"
+'HelloBabu'
+>>> 
+>>> "Hello" + "," + " " + "Babu" + "!"
+'Hello, Babu!'
+>>> 
+>>> "Ravi" + "Babu"
+'RaviBabu'
+>>> "Ravi" + " " + "Babu"
+'Ravi Babu'
+
+"Ravi" + " " + "Babu" + " " + "@ " + "Hyderabad"
+'Ravi Babu @ Hyderabad'
+
+
+"P" + "0001"
+'P0001'
+
+"p" + 100
+Traceback (most recent call last):
+  File "<pyshell#17>", line 1, in <module>
+    "p" + 100
+TypeError: can only concatenate str (not "int") to str
+
+"p" + "100"
+'p100'
+
+
+"hello" + 3.5
+Traceback (most recent call last):
+  File "<pyshell#22>", line 1, in <module>
+    "hello" + 3.5
+TypeError: can only concatenate str (not "float") to str
+
+
+# * (repeatition) operator
+
+# string * int - string is repeated for integer number of times
+
+"hello" * 10
+'hellohellohellohellohellohellohellohellohellohello'
+
+"_" * 30
+'______________________________'
+
+print("_" * 30)
+______________________________
+
+"X" * 30
+'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+
+"0" * 10
+'0000000000'
+
+"~" * 40
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+
+"-." * 20
+'-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.'
+
+"i " * 5
+'i i i i i '
+
+
+"hello" * 4.0
+Traceback (most recent call last):
+  File "<pyshell#46>", line 1, in <module>
+    "hello" * 4.0
+TypeError: can't multiply sequence by non-int of type 'float'
+
+
+chr(65)
+'A'
+chr(66)
+'B'
+chr(67)
+'C'
+chr(68)
+'D'
+chr(88)
+'X'
+chr(89)
+'Y'
+chr(90)
+'Z'
+
+chr(97)
+'a'
+chr(98)
+'b'
+chr(99)
+'c'
+...
+Ellipsis
+chr(120)
+'x'
+chr(121)
+'y'
+c
+chr(122)
+'z'
+
+chr(65 + 5)
+'F'
+
+chr(49)
+'1'
+chr(48)
+'0'
+chr(50)
+'2'
+
+chr(177)
+'±'
+chr(169)
+'©'
+
+
+chr(3077)
+'అ'
+chr(3177)
+'౩'
+chr(3178)
+'౪'
+chr(3180)
+'౬'
+chr(3170)
+'ౢ'
+
+# ord() -> Ordinal
+ord('A')
+65
+ord(' ')
+32
+ord('~')
+126
+ord(',')
+44
+
+
+# Variables
+# container to store a value/object
+# container or label
+
+5
+5
+
+x
+Traceback (most recent call last):
+  File "<pyshell#94>", line 1, in <module>
+    x
+NameError: name 'x' is not defined
+
+'''
+
+var = value
+var = expression
+var = input()
+var = object
+
+'''
+'\n\nvar = value\nvar = expression\nvar = input()\nvar = object\n\n'
+# = assignment operator (assigns or stores value on the right-side to the variable on the left-side)
+
+1 + 200 * 5 - 4 * + 9 * (7+8)**3 / 4 + 900
+-28474.0
+"HELLO" + " " + "WORLD"
+'HELLO WORLD'
+
+
+x = 10
+x
+10
+
+y = 20
+y
+20
+
+w
+Traceback (most recent call last):
+  File "<pyshell#116>", line 1, in <module>
+    w
+NameError: name 'w' is not defined
+
+w = 8
+
+w
+8
+
+x
+10
+y
+20
+w
+8
+
+x
+10
+x = 20
+x
+20
+x = 50
+x
+50
+
+x = 0.5
+x
+0.5
+
+x = 1.3
+x
+1.3
+
+x = -11.001
+x
+-11.001
+
+x = "good moring"
+x
+'good moring'
+
+x = True
+x
+True
+
+y = False
+
+y
+False
+
+x = False
+
+x
+False
+
+x = None
+x
+
+x = 'abcd'
+
+
+x = 1
+y = 2
+z = 3
+w = 4
+
+p = x + y + z + w
+p
+10
+
+q = x * 10 + y
+q
+12
+
+r = x * y * z * w
+r
+24
+
+# Use descriptive names for variables: use letters (upper & lower), numbers, and underscore to construct a variable
+
+x = 12.5
+
+tax_pct = 12.5
+tax_pct
+12.5
+
+sales2024 = 5852829
+sales2024
+5852829
+
+# variables names are case-sensitive
+sales2024=5852829
+
+sales_2025 = 6500000
+sales_2025
+6500000
+
+clg = "Malla Reddy College"
+CLG = "Wesley Degree College"
+Clg = "Vishwa Vishwani College"
+
+cls
+Traceback (most recent call last):
+  File "<pyshell#195>", line 1, in <module>
+    cls
+NameError: name 'cls' is not defined. Did you mean: 'clg'?
+
+clg
+'Malla Reddy College'
+CLG
+'Wesley Degree College'
+Clg
+'Vishwa Vishwani College'
+
+tax_pct
+12.5
+Tax_pct
+Traceback (most recent call last):
+  File "<pyshell#202>", line 1, in <module>
+    Tax_pct
+NameError: name 'Tax_pct' is not defined. Did you mean: 'tax_pct'?
+
+TAX_PCT
+Traceback (most recent call last):
+  File "<pyshell#204>", line 1, in <module>
+    TAX_PCT
+NameError: name 'TAX_PCT' is not defined
+
+
+
+# Don't begin a variable name with a number
+
+sub1 = 100
+sub2 = 89
+sub3 = 70
+sub4 = 95
+5sub = 88
+SyntaxError: invalid decimal literal
+sub5 = 88
+_sub5 = 88
+
+# No spaces within a variable name
+
+hr dept = "20171"
+SyntaxError: invalid syntax
+hr_dept = "20171"          # hr_dept / hrDept / HRDept
+hr_dept
+'20171'
+
+
+# don't use keywords as variable names
