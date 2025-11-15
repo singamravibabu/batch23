@@ -1,0 +1,251 @@
+Python 3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+
+pi = 3.14159
+
+r = 10
+
+pi * r **2
+314.159
+
+pi * 8 **2
+201.06176
+
+tax = 0.18
+
+amount = 50000
+
+amount * tax
+9000.0
+
+amount(1 + tax)
+Traceback (most recent call last):
+  File "<pyshell#15>", line 1, in <module>
+    amount(1 + tax)
+TypeError: 'int' object is not callable
+amount * (1 + tax)
+59000.0
+
+120000 * tax
+21600.0
+
+
+
+
+tax = 0.25
+
+amount = 360000
+
+tax * amount
+90000.0
+
+amount * ( 1 + tax )
+450000.0
+
+row = 1
+row = 2
+row = 3
+
+
+# SEVEN ESSENTIAL FUNCTIONS
+# =========================
+
+''' func_name() function syntax
+
+func_name([args])
+
+[args]       -> optional
+args         -> input values to a function
+
+func_name()  -> returns a value/object
+
+'''
+' func_name() function syntax\n\nfunc_name([args])\n\n[args]       -> optional\nargs         -> input values to a function\n\nfunc_name()  -> returns a value/object\n\n'
+
+# 1. type(value) -> return the 'class' of the specified value
+
+type(5)
+<class 'int'>
+
+type(-3)
+<class 'int'>
+
+type(0)
+<class 'int'>
+
+type(0.0)
+<class 'float'>
+
+type(-8.0001)
+<class 'float'>
+
+type("hello")
+<class 'str'>
+
+type("101")
+<class 'str'>
+
+type(True)
+<class 'bool'>
+
+type(False)
+<class 'bool'>
+
+type(None)
+<class 'NoneType'>
+
+
+type()
+Traceback (most recent call last):
+  File "<pyshell#75>", line 1, in <module>
+    type()
+TypeError: type() takes 1 or 3 arguments
+
+type([1, 2, 3])
+<class 'list'>
+type((1, 2, 3))
+<class 'tuple'>
+type({1, 2, 3})
+<class 'set'>
+type({1:100, 2:200})
+<class 'dict'>
+
+
+# 2. print([data][, sep=" "][, end="\n])    -> Prints content to the shell/console
+
+# anything in [...] is optional
+# all arguments are optional
+print()
+
+
+print()
+
+# 2. print([data][, sep=" "][, end="\n"])    -> Prints content to the shell/console
+
+# [data]    -> optional, data can be more than one input (value), where each value is separated by comma in the code.
+
+print(100)
+100
+print(-30)
+-30
+print(0.0)
+0.0
+print("Hello world!")
+Hello world!
+print(True)
+True
+print([1, 2, 3])
+[1, 2, 3]
+
+print(100,200)
+100 200
+print(100, 200)
+100 200
+print(100,   200)
+100 200
+print(100,      200)
+100 200
+
+print(100,200,300)
+100 200 300
+print(100,   200,    300)
+100 200 300
+print(100,200,300,400,"hello",3.5,True)
+100 200 300 400 hello 3.5 True
+print("a","b","c",1,8,True,False)
+a b c 1 8 True False
+print("a",     "b","c",  1,8,         True,False)
+a b c 1 8 True False
+
+# 2. print([data][, sep=" "][, end="\n"])
+
+print("a",     "b","c",  1,8,         True,False, sep="")
+abc18TrueFalse
+print(100,200,300,400,"hello",3.5,True, sep="-")
+100-200-300-400-hello-3.5-True
+print(100,200,300,400,"hello",3.5,True, sep="...")
+100...200...300...400...hello...3.5...True
+print(100,200,300,400,"hello",3.5,True, sep="   ")
+100   200   300   400   hello   3.5   True
+print(100,200,300,400,"hello",3.5,True, sep="   ")
+100   200   300   400   hello   3.5   True
+
+print(100,200,300,400,"hello",3.5,True, sep=", ")
+100, 200, 300, 400, hello, 3.5, True
+
+# 2. print([data][, sep=" "][, end="\n"])
+# [, end="\n"] -> \n (newline) character which is printed after the last argument.
+
+print()
+
+print("hydcheamrblrtrimum")
+hydcheamrblrtrimum
+
+print("hyd\nche\namr\nblr\ntri\nmum")
+hyd
+che
+amr
+blr
+tri
+mum
+
+print("hyd\nche\namr\nblr\ntri\nmum\n")
+hyd
+che
+amr
+blr
+tri
+mum
+
+
+= RESTART: C:/Users/singa/AppData/Local/Programs/Python/Python310/nov15.py
+1 2 3
+4 5 6
+7 8 9
+
+= RESTART: C:/Users/singa/AppData/Local/Programs/Python/Python310/nov15.py
+1...2...3
+4 5 6
+7 8 9
+
+= RESTART: C:/Users/singa/AppData/Local/Programs/Python/Python310/nov15.py
+1...2...3
+4~~~5~~~6
+7 8 9
+
+= RESTART: C:/Users/singa/AppData/Local/Programs/Python/Python310/nov15.py
+1...2...3
+4~~~5~~~6
+7---8---9
+
+= RESTART: C:/Users/singa/AppData/Local/Programs/Python/Python310/nov15.py
+1...2...3     4~~~5~~~6
+7---8---9
+
+= RESTART: C:/Users/singa/AppData/Local/Programs/Python/Python310/nov15.py
+1...2...3     4~~~5~~~6     7---8---9
+
+
+# \t    -> tab character
+
+print("hydcheamrblrtrimum")
+hydcheamrblrtrimum
+
+print("hyd\tche\tamr\tblr\ttri\tmum")
+hyd	che	amr	blr	tri	mum
+>>> 
+>>> x = 5
+>>> y = 10
+>>> 
+>>> print(x,y)
+5 10
+>>> print("Sum of", x, "and", y, "is", x + y)
+Sum of 5 and 10 is 15
+>>> 
+>>> print("Sum of ", x, " and ", y, " is ", x + y, ".", sep="")
+Sum of 5 and 10 is 15.
+>>> 
+>>> print(f"The sum of {x} and {y} is {x+y}.")
+The sum of 5 and 10 is 15.
+>>> print("Sum of", x, "and", y, "is", x + y, end=".")
+Sum of 5 and 10 is 15.
