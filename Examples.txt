@@ -1,0 +1,16 @@
+
+x = 10
+y = input()
+
+type(x)
+type(y)
+
+
+pi = 3.14159
+r = input()
+
+2 * pi * r
+pi * r ** 2
+
+type(pi)
+type(r)

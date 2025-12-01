@@ -1,0 +1,6 @@
+python
+java
+powerbi
+sql
+excel
+machine learning
