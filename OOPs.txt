@@ -1,0 +1,181 @@
+Python 3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> 
+>>> class Employee:
+...     name = "..."
+...     age = 21
+... 
+...     
+>>> e1 = Employee()
+>>> e2 = Employee()
+>>> e3 = Employee()
+>>> 
+>>> e1.name
+'...'
+e1.age
+21
+
+e2.name
+'...'
+e2.age
+21
+
+e3.name
+'...'
+e3.age
+21
+
+e1.name = "rajkumar"
+e1.age = 29
+
+e2.name = "shyam"
+e2.age = 21
+
+e3.name = "sravan"
+e3.age = 24
+
+e1.name
+'rajkumar'
+e2.name
+'shyam'
+e3.name
+'sravan'
+
+e1.age
+29
+e2.age
+21
+e3.age
+24
+
+class Employee:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+        
+e1 = Employee("Rajesh", 35)
+e1.name
+'Rajesh'
+e1.age
+35
+
+e2 = Employee("Eashwar", 21)
+e2.name
+'Eashwar'
+e2.age
+21
+
+class Product:
+    def __init__(self, name, price, discountPercent):
+        self.name = name
+        self.price = price
+        self.discountPercent = discountPercent
+
+        
+p1 = Product("HP Ryzen 7", 87000.0, 1.5)
+p1.name
+'HP Ryzen 7'
+p1.price
+87000.0
+p1.discountPercent
+1.5
+
+
+class Product:
+    def __init__(self, name, price, discountPercent):
+        self.name = name
+        self.price = price
+        self.discountPercent = discountPercent
+    def discountAmount(self):
+        return self.price * self.discountPercent / 100
+    def discountPrice(self):
+        return self.price - self.discountAmount()
+
+    
+p2 = Product("Epson Projector", 50000.0, 1.5)
+p2.name
+'Epson Projector'
+p2.price
+50000.0
+p2.discountPercent
+1.5
+p2.discountAmount()
+750.0
+p2.discountPrice()
+49250.0
+
+
+class Product:
+    def __init__(self, name, price, discountPercent):
+        self.name = name
+        self.price = price
+        self.discountPercent = discountPercent
+    def discountAmount(self):
+        return self.price * self.discountPercent / 100
+    def discountPrice(self):
+        return self.price - self.discountAmount()
+
+    
+
+p3 = Product("Laserjet Printer", 18500.0, 2)
+p3
+<__main__.Product object at 0x0000018F6D8CE5C0>
+print(p3)
+<__main__.Product object at 0x0000018F6D8CE5C0>
+
+
+class Product:
+    def __init__(self, name, price, discountPercent):
+        self.name = name
+        self.price = price
+        self.discountPercent = discountPercent
+    def discountAmount(self):
+        return self.price * self.discountPercent / 100
+    def discountPrice(self):
+        return self.price - self.discountAmount()
+    def __str__(self):
+        print(f"Product name: {self.name}")
+        print(f"Product price: {self.price}")
+        print(f"Discount percent: {self.discountPercent}")
+        print(f"Discount amount: {self.discountAmount()}")
+        print(f"Discount price: {self.discountPrice()}")
+
+        
+p4 = Product("Reading Table", 4850.0, 10)
+p4
+<__main__.Product object at 0x0000018F6D8CEB60>
+print(p4)
+Product name: Reading Table
+Product price: 4850.0
+Discount percent: 10
+Discount amount: 485.0
+Discount price: 4365.0
+Traceback (most recent call last):
+  File "<pyshell#96>", line 1, in <module>
+    print(p4)
+TypeError: __str__ returned non-string (type NoneType)
+
+
+class Product:
+    def __init__(self, name, price, discountPercent):
+        self.name = name
+        self.price = price
+        self.discountPercent = discountPercent
+    def discountAmount(self):
+        return self.price * self.discountPercent / 100
+    def discountPrice(self):
+        return self.price - self.discountAmount()
+    def __str__(self):
+        return f"Product name: {self.name}\nProduct price: {self.price}\nDiscount percent: {self.discountPercent}\nDiscount amount: {self.discountAmount()}\nDiscount price: {self.discountPrice()}"
+
+    
+p5 = Product("Rice bag", 1500.0, 0)
+p5
+<__main__.Product object at 0x0000018F6D8CF430>
+print(p5)
+Product name: Rice bag
+Product price: 1500.0
+Discount percent: 0
+Discount amount: 0.0
+Discount price: 1500.0
