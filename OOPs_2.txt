@@ -1,0 +1,269 @@
+Python 3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+
+# OBJECT COMPOSITION
+# Combine simple objects into a more complex ones
+
+''' Comparing Die and Dice objects:
+
+Dice                Die
+-----               -----
+list        -->     value
+addDie(die)         roll()
+rollAll()
+
+'''
+' Comparing Die and Dice objects:\n\nDice                Die\n-----               -----\nlist        -->     value\naddDie(die)         roll()\nrollAll()\n\n'
+
+import random
+
+class Die:
+    def __init__(self):
+        self.value = 1
+    def roll(self):
+        self.value = random.randrange(1, 7)
+
+        
+d1 = Die()
+d1.value
+1
+d1.roll()
+d1.value
+1
+d1.roll()
+d1.value
+6
+d1.roll()
+d1.value
+4
+
+
+class Die:
+    def __init__(self):
+        self.value = 1
+    def roll(self):
+        self.value = random.randrange(1, 7)
+
+        
+
+class Dice:
+    def __init__(self):
+        self.list = []
+    def addDie(self, die):
+        self.list.append(die)
+    def rollAll(self):
+        for die in self.list:
+            die.roll()
+
+            
+
+
+class Die:
+    def __init__(self):
+        self.value = 1
+    def roll(self):
+        self.value = random.randrange(1, 7)
+
+        
+
+d1 = Die()
+d1.value
+SyntaxError: invalid decimal literal
+
+class Die:
+    def __init__(self):
+        self.value = 1
+    def roll(self):
+        self.value = random.randrange(1, 7)
+
+        
+
+d1 = Die()
+d1.value
+1
+d1.roll()
+d1.value
+6
+d1.value = 10
+
+d1.value
+10
+
+# by default, all the attributes are public
+# we need to make them private to add security to the application
+
+''' Attributes:
+
+value        # public attribute
+__value      # private attribute
+
+'''
+' Attributes:\n\nvalue        # public attribute\n__value      # private attribute\n\n'
+
+
+class Die:
+    def __init__(self):
+        self.__value = 1
+    def roll(self):
+        self.__value = random.randrange(1, 7)
+
+        
+d2 = Die()
+d2.__value
+Traceback (most recent call last):
+  File "<pyshell#78>", line 1, in <module>
+    d2.__value
+AttributeError: 'Die' object has no attribute '__value'
+
+
+class Die:
+    def __init__(self):
+        self.__value = 1
+    def roll(self):
+        self.__value = random.randrange(1, 7)
+
+        
+
+d4 = Die()
+d4.__value = 3
+d4.__value
+3
+print(d4.__value)
+3
+
+class Die:
+    def __init__(self):
+        self.__value = 1
+    def getValue(self):
+        return self.__value
+    def setValue(self):
+        self.__value = random.randrange(1, 7)
+
+        
+
+d5 = Die()
+d5.__value
+Traceback (most recent call last):
+  File "<pyshell#97>", line 1, in <module>
+    d5.__value
+AttributeError: 'Die' object has no attribute '__value'
+d5.getValue()
+1
+d5.setValue()
+d5.getValue()
+1
+d5.setValue()
+d5.getValue()
+2
+d5.setValue()
+d5.getValue()
+4
+d5.setValue()
+d5.getValue()
+5
+
+
+class Die:
+    def __init__(self):
+        self.__value = 1
+    def getValue(self):
+        return self.__value
+    def roll(self):
+        self.__value = random.randrange(1, 7)
+
+        
+
+d6 = Die()
+d6.getValue()
+1
+d6.roll()
+d6.getValue()
+1
+d6.roll()
+d6.getValue()
+3
+
+
+class Die:
+    def __init__(self):
+        self.__value = 1
+    def getValue(self):
+        return self.__value
+    def setValue(self, value):
+        if value < 1 or value > 6:
+            raise ValueError("Die value must be between 1 and 6.")
+        else:
+            self.__value = value
+    def roll(self):
+        self.__value = random.randrange(1, 7)
+
+        
+d7 = Die()
+d7.getValue()
+1
+d7.setValue(5)
+d7.getValue()
+5
+d7.setValue(8)
+Traceback (most recent call last):
+  File "<pyshell#126>", line 1, in <module>
+    d7.setValue(8)
+  File "<pyshell#121>", line 8, in setValue
+    raise ValueError("Die value must be between 1 and 6.")
+ValueError: Die value must be between 1 and 6.
+d7.roll()
+d7.getValue()
+3
+
+
+''' Using property annotation to create a getter and setter methods.
+
+@property               # for getter method
+@propertyName.setter    # for setter method
+
+'''
+' Using property annotation to create a getter and setter methods.\n\n@property               # for getter method\n@propertyName.setter    # for setter method\n\n'
+
+class Die:
+    def __init__(self):
+        self.__value = 1
+    @property
+    def value(self):
+        return self.__value
+    @value.setter
+    def value(self, value):
+        if value < 1 or value > 6:
+            raise ValueError("Die value to be between 1 and 6.")
+        else:
+            self.__value = value
+
+            
+d8 = Die()
+d8.value
+1
+d8.value = 3
+d8.value
+3
+d8.value = 7
+Traceback (most recent call last):
+  File "<pyshell#156>", line 1, in <module>
+    d8.value = 7
+  File "<pyshell#151>", line 10, in value
+    raise ValueError("Die value to be between 1 and 6.")
+ValueError: Die value to be between 1 and 6.
+class Die:
+...     def __init__(self):
+...         self.__value = 1
+...     @property
+...     def value(self):
+...         return self.__value
+...     @value.setter
+...     def value(self, value):
+...         if value < 1 or value > 6:
+...             raise ValueError("Die value to be between 1 and 6.")
+...         else:
+...             self.__value = value
+...     def roll(self):
+...         self.__value = random.randrange(1, 7)
+... 
+...         
