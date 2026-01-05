@@ -1,0 +1,12 @@
+,First Name,Gender,Start Date,Salary,Mgmt,Team
+0,Douglas,Male,1993-08-06,0,True,Marketing
+1,Thomas,Male,1996-03-31,61933,True,
+2,Maria,Female,,130590,False,Finance
+4,Larry,Male,1998-01-24,101004,True,IT
+5,Dennis,Male,1987-04-18,115163,False,Legal
+6,Ruby,Female,1987-08-17,65476,True,Product
+8,Angela,Female,2005-11-22,95570,True,Engineering
+9,Frances,Female,2002-08-08,139852,True,Business Dev
+12,Brandon,Male,1980-12-01,112807,True,HR
+13,Gary,Male,2008-01-27,109831,False,Sales
+40,Michael,Male,2008-10-10,99283,True,Distribution
