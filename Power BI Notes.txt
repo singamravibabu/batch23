@@ -1,0 +1,510 @@
+Power BI
+-----------
+- A Business Intelligence tool by Microsoft
+- The most used analytical tool in the world
+
+Two components of Power BI
+---------------------------
+Power BI Service:
+	- Collaborate and work with others
+	- Share your work with others based on roles
+	- Cloud storage
+	- Advanced analytics
+Power BI Desktop:
+	- Free desktop application
+	- Do all the analytics on this
+
+Download Power BI Desktop
+
+
+Three types of objects in Power BI
+------------------------------------
+- Table
+- Column
+- Measure
+
+From Table we get Columns -> Measure or based on Tables and Columns
+
+We can create the above objects using DAX formulas (in the Formula Bar)
+
+DAX -> Data Analysis eXpressions
+	- code (formulas)
+	- appear like Excel formulas
+
+
+DAX Formulas
+=============
+Syntax for DAX:
+
+Name = Formula
+
+Name refers the name of the object you are creating:
+	Table
+	Column
+	Measure
+
+Formula is a DAX expression to create the object.
+
+Referring objects in Formulas:
+Table:		TableName
+Column:		[ColumnName]	or TableName[ColumnName]
+Measure:	[Measure]
+
+
+Creating a Date Table using DAX expression: Calendar
+----------------------------------------------------
+Name = Formula
+
+Calendar = Formula
+
+What does the Calendar table contain?
+- Sequence of dates as in a calendar
+
+Calendar = CALENDAR( start_date, end_date )
+	- CALENDAR() generates sequence of dates
+
+DATE formula: Returns a date value
+	DATE( year, month, day )
+	DATE( 2026, 1, 26)
+	DATE(2026, 4, 20)
+	DATE(2026, 11, 17)
+	DATE(2026, 8, 2)
+
+Calendar = CALENDAR( 
+		DATE(2017, 1, 1), 
+		DATE(2019, 12, 31) 
+)
+
+Calendar	-> Table name
+		-> By default, column with dates is named Date
+
+Choose 'New Table' and paste the above formula in the Formula Bar
+
+
+Types of DAX Formulas
+=======================
+- Calculated Columns
+- Measures
+
+Calculated Column
+-----------------
+- Using a DAX formula to create a column (in a table)
+
+
+Date Components:
+2026/1/26
+	Year: 2026
+	MonthNum: 1
+	Month: January
+	Day: 26
+	WeekdayNum: 2 (Sun-Sat: 1 to 7)
+	Weekday: Monday
+	WeekNum: 5 (53 weeks)
+
+
+FORMAT( value, format_code )
+	Formats the given value
+	value -> date
+	format -> January, February, March, ...
+
+FORMAT( [Date], format_code )
+
+format codes:
+	yyyy	-> four digit year number
+	yy	-> two digit year number
+	m	-> month number (1, 2, 3, ..., 11, 12)
+	mm	-> month number (01, 02, 03, ..., 11, 12)
+	mmm	-> short month name (Jan, Feb, Mar, ...)
+	mmmm	-> full month name (January, February, March..)
+	d	-> day number (1, 2, 3, ..., 30, 31)
+	dd	-> day number (01, 02, 03, ..., 30, 31)
+	ddd	-> short day name (Sun, Mon, Tue, ...)
+	dddd	-> full day name (Sunday, Monday, ...)
+
+
+Name = Formula
+Month = FORMAT( [Date], "MMMM" )
+
+Choose 'New Column' and paste the formula in Formula Bar
+
+
+
+Name = Formula
+Year = YEAR( date_value )
+
+YEAR( date_value )
+	Returns the year number from the date value.
+
+Year = YEAR ( [Date] )
+
+Choose 'New Column' and paste the formula in Formula Bar
+
+
+
+Name = Formula
+MonthNum = Formula
+
+Formula: MONTH( date_value )
+	- Returns month number
+
+MonthNum = MONTH ( [Date] )
+
+
+
+WeekNum
+============
+There are 53 weeks (1 - 53)
+
+Name = Formula
+WeekNum = WEEKNUM( date_value )
+WeekNum = WEEKNUM( [Date] )
+
+
+Weekday
+=======
+Name = Formula
+Weekday = FORMAT( date_value, format_code )
+Weekday = FORMAT( [Date], "DDDD" )
+
+
+WeekdayNum
+============
+Name = Formula
+WeekdayNum = WEEKDAY( [Date] )
+		Sun -1, Mon -2, Tue -3, ..., Sat -6
+
+WeekdayNum = WEEKDAY( [Date], 2 )
+		Mon 1, Tue 2, Wed 3, ..., Sun 7
+		Mon - Fri (1 - 5)
+		Sat - Sun (6 - 7)
+
+WeekdayNum = WEEKDAY( [Date], 3 )
+		Mon 0, Tue 1, Wed 2, ..., Sun 6
+
+
+
+2017, 2018, 2019 - Numbers - Text
+
+2017, 2018, 2019
+
+
+
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 - Numbers
+
+1, 10, 11, 12, 2, 3, 4, 5, 6, 7, 8, 9 - Text
+
+
+
+
+
+
+
+IsWorkday
+=========
+Mon - Fri	-> 1
+Sat - Sun	-> 0
+
+
+= IF ( condition, if_true, if_false )
+	True/False
+
+IsWorkday = Formula
+IsWorkday = IF( [WeekdayNum] <= 5, 1, 0 )
+
+
+
+Calculations
+****************
+- Calculated Columns
+	- create a column in a table using a DAX calculation
+	- It uses a 'row context'
+- Measures
+
+
+
+Calculated Columns
+---------------------
+Hours table:
+
+Column = SUM( [Hours] )
+	- Resets the function for 'filter context'
+
+Don't use aggregate functions to create 'Calculated Columns', functions such as: SUM, AVERAGE, MEDIAN, MAX, MIN, COUNTA
+
+
+Column 2 = [Hours] / [TotalHours]
+	applies 'row context'
+
+
+
+Utilization Target 80%
+	Total Billable Hours / Total Hours
+		= 0.8 (80%)
+
+
+Column 3 =
+SUMX(
+	FILTER(
+		ALL('Hours'),
+		[Category] = "Billable" && [EmployeeID] = EARLIER( [EmployeeID] )
+	),
+	[Hours]
+)
+
+
+EARLIER() function works in 'row context'
+	it executes for each row
+
+ALL() -> Removes all the filters from the table/column/expression
+
+Filters are of 3 types: Filter Context
+	- visual
+	- slicer
+	- from filters pane
+
+
+
+Total Hours = SUM( 'Hours'[Hours] )
+
+Total Rows = COUNTROWS( 'Hours' ) 
+Grand Total Rows = COUNTROWS( ALL ( 'Hours' ) )
+
+
+Column 3 =
+SUMX(
+   FILTER( ALL('Hours'),
+	   [Category] = "Billable" && [EmployeeID] = EARLIER( [EmployeeID] )
+	),
+	[Hours]
+)
+
+
+
+FILTER() function
+===================
+FILTER( table, filter1, filter2, filter3, ... )
+
+	- Creates a virtual table
+
+
+Iterator Functions
+======================
+SUMX, AVERAGEX, MINX, MAXX, COUNTAX, ... These functions are called iterators.
+
+Most iterator functions end with the letter 'X'
+Some iterator functions don't end with letter 'X'
+There are non-iterator functions which also end with letter 'X'
+
+Syntax:
+
+FUNCTION_NAME( table, expression )
+	expression is evaluated for each row of the table
+
+SUMX( table, expression )
+	expression is evaluated for each row of the table and then sums all the values.
+
+
+Invoices
+Agent	Sales
+-----	-----
+A	10
+B	20
+C	30
+
+SUM( [Sales] )	 or 	SUM( 'Invoices'[Sales] )
+	60
+
+SUMX ( 'Invoices', 'Invoices'[Sales] * 1.5 )
+	10 * 1.5	15
+	20 * 1.5	30
+	30 * 1.5	45
+
+			90
+
+AVERAGEX ( 'Invoices', 'Invoices'[Sales] * 1.5 )
+	30
+
+
+	Total Billable Hours / Total Hours
+		Utilization
+
+
+
+Column 4 =
+SUMX(
+   FILTER( ALL('Hours'),
+	   [EmployeeID] = EARLIER( [EmployeeID] )
+	),
+	[Hours]
+)
+
+
+Column 5 = [Column 3] / [Column 4]
+Column 5 = DIVIDE( [Column 3], [Column 4], 0)
+
+
+
+Budgets and Forecasts
+=======================
+New Column
+
+MonthYear = [Month] & "2017"
+
+& - Concatenation operator
+
+
+Calendar
+=========
+New Column
+
+MonthYear = LEFT( [Month], 3) & [Year]
+
+
+New Table
+=========
+MonthYears = DISTINCT( 'Calendar'[MonthYear] )
+
+
+Calendar table granularity is day-wise
+Budgets and Forecasts table granularity is month-wise
+
+
+Measures
+============
+- Measure are evaluated in a visual.
+- Measure is filtered by visual, slicer, filters pane, and filters in the expressions.
+
+
+Total Billable Hours = 
+SUMX(
+	FILTER( 'Hours', 'Hours'[Category] = "Billable" ),
+	'Hours'[Hours]
+)
+
+
+% Utilization = Total Billable Hours / Total Hours
+
+
+Rajkumar (week)
+	day1 8 hours (billable) 8
+	day2 8 hours (billable) 8
+	day3 6 hours (Training) 8 
+	day4 7 hours (Int. Admin) 8
+	day5 3 hours (sales report) 8
+
+16 billable hours
+32 reported hours
+40 total hours
+16 / 32 (0.5) => 50%
+16 / 40 => 40%
+
+
+Creating WorkHours column in Calendar table:
+
+WorkHours = IF( [IsWorkday], 8, 0 )
+WorkHours = IF( [IsWorkday] = 1, 8, 0 )
+
+
+Total Hours Measure:
+
+Total Hours = SUM( 'Calendar'[WorkHours] )
+
+
+Name		Total Billable Hours		Total Hours
+-------		---------------------		-----------
+People	-> 	Hours			<-	Calendar
+1990 - 2017	2019 (Jan - Mar)		2017 - 2019
+
+
+ID		EmployeeID
+A		A
+
+
+All Names		------			All Hours (6256)
+
+
+
+People	-> 	Hours			<->	Calendar
+1990 - 2017	2019 (Jan - Mar)		2019 (Jan - Mar)
+
+
+% Utilization = [Total Billable Hours] / [Total Hours]
+
+% Utilization = DIVIDE( [Total Billable Hours] , [Total Hours] , 0)
+
+
+Rename [Total Hours] -> [Total Hours by Employee]
+
+The [% Utilization] measure is automatically updated:
+
+% Utilization = 
+DIVIDE( [Total Billable Hours] , [Total Hours by Employee] , 0)
+
+
+
+
+New measure named: [Total Hours]
+
+Total Hours =
+IF(
+	HASONEVALUE(People[Name]),
+	[Total Hours by Employee],
+	SUMX(
+		SUMMARIZE(
+			'People', People[Name],
+			"__Hours", [Total Hours by Employee]
+		),
+		[__Hours]
+	)
+)
+
+
+People
+-------------
+Name		__Hours
+-------		--------
+Shanmukh	70
+Santosh		30
+Rajkumar	55
+Jagadeesh	45
+
+
+
+Update % Utilization:
+
+% Utilization = 
+DIVIDE( [Total Billable Hours] , [Total Hours] , 0)
+
+
+When the [% Utilization] measure is sorted in ascending order in the visual, we see the blank values in the column of the visual.
+So, lets update the % Utilization measure
+
+
+% Utilization =
+VAR __utilization = 
+	DIVIDE( [Total Billable Hours] , [Total Hours] , 0)
+RETURN
+    __utilization + 0
+
+
+The above expression add more rows because its showing previous employees.
+
+
+Update the formula:
+-------------------
+% Utilization =
+VAR __utilization = 
+	DIVIDE( [Total Billable Hours] , [Total Hours] , 0)
+VAR __days = COUNTROWS('Hours')
+RETURN
+IF(
+	ISBLANK(__days),
+	BLANK(),
+	__utilization + 0
+)
+
+
+
+
+
+
