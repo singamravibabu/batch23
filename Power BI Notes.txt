@@ -505,6 +505,116 @@ IF(
 
 
 
+SWITCH(	expr,
+	value1, result1,
+	value2, result2,
+	value3, result3,
+	...
+	default_result
+)
+
+
+
+Total Hours =
+SWITCH( MAX(People[EmployeeType]),
+	"HOURLY", [Total Billable Hours],
+	"SUB-CONTRACTOR", [Total Billable Hours],
+	"SALARY", IF( HASONEVALUE(People[Name]),
+			[Total Hours by Employee],
+			SUMX(
+			SUMMARIZE(
+			'People', People[Name],
+			"__Hours", [Total Hours by Employee]
+			),
+			[__Hours]
+			)
+	),
+	BLANK()
+)
+
+
+
+
+
+Division -> JobID -> Hours
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Customer Name = RELATED( Customers[CUSTOMER NAME] )
+
+Region Name = RELATED( Regions[REGION] )
+
+
+Two conditions for using REALTED function:
+- 1. Tables must be realted4
+- 2. We can use this is the table which is on many side (not on one side). We can get the data from one side into many side, but not vice-versa.
+
+
+
+Measures
+----------
+Total Units = SUM ( Productsales[UNITS SOLD] )
+Avg Units = AVERAGE( Productsales[UNITS SOLD] )
+
+No. of Sales = COUNTROWS ( Productsales )
+	- counts all the rows in a table
+
+Avg Units 2 = [Total Units] / [No. of Sales]
+
+Distinct Customers = DISTINCTCOUNT ( Productsales[CUSTOMER ID] )
+	- counts unique values from a column
+
+
+Total Stores = SUM ( Customers[NO. OF STORES] )
+
+No. of Products = COUNTROWS ( Products )
+
+
+
+CALCULATE
+----------------
+Syntax:
+
+= CALCULATE ( expression, filter1, filter2, filter3, ... )
+expression -> measure or a calculated column formula
+CALCULATE modifies the filter context of the expression
+
+
+[Total Units] -> all years 2017 - 2021
+
+
+2021 Units =
+CALCULATE ( [Total Units], DateTable[YEAR] = 2021 ) 
+
+
+2021 Percentage =
+DIVIDE ( [Total Units] , [2021 Units], 0 )
+
+
+
+UnitPrice = RELATED( Products[PRICE PER UNIT] ) 
+
+TotalSales = [Units Sold] * [UnitPrice]
+
+
+Total Sales = SUM( Productsales[UNITS SOLD] * Products[PRICE PER UNIT] )
+
+Total Sales =
+SUMX( Productsales,
+	Productsales[UNITS SOLD] * RELATED ( Products[PRICE PER UNIT] )
+)	
+
+
+Total Sales Greater than 350 =
+CALCULATE ( [Total Sales], Productsales[UNITS SOLD] > 350 )
+
+
+
+
+
+
 
 
 
