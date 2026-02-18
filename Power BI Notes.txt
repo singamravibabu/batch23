@@ -581,6 +581,10 @@ Syntax:
 expression -> measure or a calculated column formula
 CALCULATE modifies the filter context of the expression
 
+By default, filters in CALCULATE() function are combined using AND (&&) operator.
+
+There is OR (||) operator.
+
 
 [Total Units] -> all years 2017 - 2021
 
@@ -611,9 +615,87 @@ Total Sales Greater than 350 =
 CALCULATE ( [Total Sales], Productsales[UNITS SOLD] > 350 )
 
 
+Total Units in May 2021 = 
+CALCULATE ( [Total Units],
+		DateTable[YEAR] = 2021,
+		DateTable[MONTH] = "may"
+)
+
+
+Total Units for Abel in Argentina =
+CALCULATE ( [Total Units],
+		SalesPeople[SALESPERSON] = "Abel",
+		Regions[REGION] = "Argentina"
+)
+
+
+Average Units for Black Ltd in 2021 =
+CALCULATE ( AVERAGE ( Productsales[UNITS SOLD] ) , 
+	Customers[CUSTOMER NAME] = "black ltd",
+	DateTable[YEAR] = 2021
+)
 
 
 
+Combing two filters using OR (||) operator on the same column gives correct results:
+
+
+Total Units in 2020 or 2021 =
+CALCULATE ( [Total Units],
+	DateTable[YEAR] = 2021 || DateTable[YEAR] = 2020
+)			
+
+
+Average Units for Argentina or Australia =
+CALCULATE ( AVERAGE ( Productsales[UNITS SOLD] ),
+Regions[REGION] = "Argentina" || Regions[REGION] = "Australia"
+)
+
+Average Units for Argentina or Australia 2 =
+CALCULATE ( AVERAGE ( Productsales[UNITS SOLD] ),
+Regions[REGION] = "Argentina", Regions[REGION] = "Australia"
+)
+
+
+
+Combing two filters using OR (||) operator on the different columns gives incorrect results:
+
+Sales for Red or France =
+CALCULATE ( [Total Sales],
+	Products[TYPE] = "Red" || Products[PRODUCT COUNTRY] = "France")
+
+
+Sales for Red or France 2 =
+CALCULATE ( [Total Sales],
+	Products[TYPE] = "Red", Products[PRODUCT COUNTRY] = "France")
+
+
+Sales for Red or France 3 =
+CALCULATE ( [Total Sales],
+	FILTER (Products,
+		Products[TYPE] = "Red" || Products[PRODUCT COUNTRY] = "France")
+)
+
+
+
+No. of Sales = COUNTROWS ( Productsales )
+
+No. of Sales greater than 350 =
+COUNTROWS (
+	FILTER ( Productsales,
+		Productsales[UNITS SOLD] > 350 )
+)
+
+
+No. of Sales of High Profit Products =
+CALCULATE ( [No. of Sales],
+	FILTER ( Products,
+		Products[PRICE PER UNIT] >= 3 * Products[COST PRICE]
+	)
+)
+
+
+NOTE: Always try to use FILTER() inside the CALCULATE() function when you need to filter a table.
 
 
 
