@@ -699,4 +699,32 @@ NOTE: Always try to use FILTER() inside the CALCULATE() function when you need t
 
 
 
+Hours for Hours =
+CALCULATE ( 
+	SUM( 'Hours'[Hours] ),
+	'Hours'[PayType] = "HOURLY"
+)
+
+
+Measure:
+% Target Utilization = 0.8
+
+Table:
+Target Utilization = GENERATESERIES(50, 100, 5)
+
+
+Calendar =
+CALENDAR ( MIN ( 'Hours'[Date] ), MAX ( 'Hours'[Date] ) )
+
+
+Division Title =
+	VAR allCount = 3
+	VAR currentCount = COUNTROWS ( SUMMARIZE ('Hours', [Division] ) )
+RETURN
+	SWTICH( TRUE(),
+		HASONEVALUE(Hours[Division]), MAX(Hours[Division]),
+		allCount = currentCount, "All Divisions",
+		"Multiple Divisions"
+)
+
 
