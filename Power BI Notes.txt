@@ -721,10 +721,49 @@ Division Title =
 	VAR allCount = 3
 	VAR currentCount = COUNTROWS ( SUMMARIZE ('Hours', [Division] ) )
 RETURN
-	SWTICH( TRUE(),
+	SWITCH( TRUE(),
 		HASONEVALUE(Hours[Division]), MAX(Hours[Division]),
 		allCount = currentCount, "All Divisions",
 		"Multiple Divisions"
 )
+
+
+Branch Title =
+	VAR allCount = 3
+	VAR currentCount = COUNTROWS ( SUMMARIZE ('People', [Location] ) )
+RETURN
+	SWITCH( TRUE(),
+		HASONEVALUE(People[Location]), MAX(People[Location]),
+		allCount = currentCount, "All Branches",
+		"Multiple Branches"
+)
+
+
+
+
+tmpTable = DISTINCT( 'Hours'[Category] )
+
+
+Type Title =
+	VAR allCount = 3
+	VAR currentCount = COUNTROWS ( SUMMARIZE ('People', [EmployeeType] ) )
+RETURN
+	SWITCH( TRUE(),
+		HASONEVALUE(People[EmployeeType]), MAX(People[EmployeeType]),
+		allCount = currentCount, "All Type",
+		"Multiple Types"
+)
+
+
+
+
+Employee Type =
+IF (	HASONEVALUE( 'People'[Name] ),
+		MAX( 'People'[Name] ),
+		"Multiple Employees"
+)
+
+
+
 
 
