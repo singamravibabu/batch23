@@ -765,5 +765,117 @@ IF (	HASONEVALUE( 'People'[Name] ),
 
 
 
+MS EXCEL
+~~~~~~~~~~~~
+- World's number of spreadsheet application
+
+
+Cell References
+================
+A5	-> Column A, Row 5
+M14	-> Column M, Row 14
+
+1. Relative references:
+	A relative reference is a position, not an address
+	A5, M12, G7, C15, B4, ....
+
+2. Absolute references:
+	An absolute reference is an address
+	$A$5, $M$12, $G$7, $C$15, $B$4, ....
+
+3. Mixed references
+	Column absolute, Row relative:
+	$A5, $M12, $G7, $C15, $B4
+
+	Column relative, Row absolute:
+	A$5, M$12, G$7, C$15, B$4
+
+
+
+Referring Cells from another sheet:
+=SheetName!CellsAddress
+=Sheet1!A5
+=Sheet2!$B$8
+
+Referring cells from another workbook:
+=[Forecast.xlsx]Sheet1!A9
+
+
+
+LOOKUP FORMULAS
+~~~~~~~~~~~~~~~~~~
+
+=VLOOKUP( lookup_value, table_array, col_index, [type] )
+
+lookup_value: is the search value which is searched in the first column of the table_array
+
+table_array: is a table with atleast two columns, that's what makes sense
+
+col_index: the column from which you want the output from the table_array
+
+[type]: optional; type of lookup:
+	0 (False): exact match
+	1 (True): approximate match (ascending order)
+		Exact or less than
+	-1: approximate match (descending order)
+
+
+=IFERROR( expression, output )
+	IF the expression returns an error, then the outcome is 'output' value
+	Otherwise, the outcome is from the expression.
+
+
+
+
+=INDEX( table_array, row_num, column_num )
+	Returns value from the table_array based on the row_num and col_num specified.
+
+
+
+=MATCH( lookup_value, column-or-row_array, [type] )
+
+Searches for lookup_value in the specified row/column.
+
+[type]: optional; type of lookup:
+	0 (False): exact match (random order)
+	1 (True): approximate match (ascending order)
+		Exact or less than
+	-1: approximate match (descending order)
+		Exact or greater than
+
+
+
+=LOOKUP( lookup_value, lookup_array, pickup_array )
+
+Search for the position_number of 'lookup_value' in the 'lookup_array'. Then it returns the value from the same position from 'pickup_array'.
+
+Note: lookup_array and pickup_array should have same number of cells.
+
+
+
+=xLOOKUP( lookup_value, lookup_array, pickup_array, "Default value", [type] )
+
+0	exact match (random values)
+1	approximate (exact or less than)
+-1	approximate (exact or greater than)
+2	wild cards
+		?	one character
+		*	zero to any number of characters
+
+
+
+
+
+=IF( B2 < LARGE($B$2:$B$13,3), NA(), B2 )
+
+=IF( B2 < LARGE($B$2:$B$13,3), B2, NA() )
+
+
+
+=IF( B2 < LARGE($B$2:$B$13,$D$2), NA(), B2 )
+
+=IF( B2 < LARGE($B$2:$B$13,$D$2), B2, NA() )
+
+
 
 
