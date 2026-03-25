@@ -878,4 +878,68 @@ Note: lookup_array and pickup_array should have same number of cells.
 
 
 
+CONDITIONAL FORMATTING
+-----------------------
+=$B1>80
+=AND($B1>=50,$B1<=80)
+=$B1<50
+
+=OR($B1="Sales",$B1="Legal")
+
+=ISBLANK(D7)
+=ISTEXT(A1)
+=ISNUMBER(activeCell)
+
+=A2>TODAY()
+
+
+Highlight duplicate values
+=COUNTIF(range, value)
+	counts the number of occurrences of the 'value' in the 'range'
+
+=COUNTIF($A$1:$M$16,A1)>1	mORE THAN ONCE
+=COUNTIF($A$1:$M$16,A1)=1	EXACTLY ONE TIME (NO DUPLICATES)
+=COUNTIF($A$1:$M$16,A1)=2	EXACTLY TWO TIMES
+=COUNTIF($A$1:$M$16,A1)=3	EXACTLY THREE TIMES
+=COUNTIF($A$1:$M$16,A1)>3	GREATER THAN 3 TIMES
+
+
+=IF(B2<>"Law",ISNUMBER(C2),TRUE)
+
+=IF(B2<>"Law",ISNUMBER(C2),C2="FREE")
+
+
+Avoid duplicates
+------------------
+=COUNTIF(range, value)=1
+=COUNTIF($D$2:$D$13,D2)=1
+
+GREATER THAN PREVIOUS VALUE
+=D2>D1
+
+Ascending order without duplicates:
+=AND(COUNTIF($D$2:$D$13,D2)=1,D2>D1)
+
+
+
+Generating Data for Pivot Table
+-------------------------------
+=CHOOSE(RANDBETWEEN(1,5),"Sundeep","Koushik","Jagadeesh","Eashwar","Ramu")
+
+=CHOOSE(RANDBETWEEN(1,4),"North","East","West","South")
+
+=CHOOSE(RANDBETWEEN(1,5),"Projector","Laptop","Printer","Scanner","Webcam")
+
+=RANDBETWEEN(1,6)
+
+=RANDBETWEEN(5000,9999)*10
+
+=RANDBETWEEN("1/1/2025","31/3/2025")
+
+
+
+=IF($H$6=1,B1,IF($H$6=2,C1,D1))
+
+
+
 
