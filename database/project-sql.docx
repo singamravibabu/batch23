@@ -1,0 +1,221 @@
+PROJECT
+Retail Sales & Inventory Intelligence System (SQL-Based Project)
+
+1. PROJECT OBJECTIVE
+Build a pure database solution that:
+Stores and manages retail data
+Generates business reports using SQL
+Performs analytics directly from the database
+Simulates real-world operations using queries, procedures, and triggers
+
+2. PROJECT APPROACH (NO WEB APP)
+You will use:
+MySQL / SQL Server
+SQL Queries
+Views
+Stored Procedures
+Triggers
+Functions
+Reports (via SQL)
+
+3. DATABASE MODULE BREAKDOWN
+A. SALES DOMAIN
+customers
+orders
+order_items
+staffs
+stores
+B. PRODUCTION DOMAIN
+products
+brands
+categories
+stocks
+
+4. CORE BUSINESS OPERATIONS (SQL-ONLY)
+
+OPERATION 1: Add New Customer
+INSERT INTO customers (first_name, last_name, phone, email, city, state)
+VALUES ('Ravi', 'Kumar', '9999999999', 'ravi@email.com', 'Hyderabad', 'Telangana');
+
+
+OPERATION 2: Create Order
+INSERT INTO orders (customer_id, order_status, order_date, store_id, staff_id)
+VALUES (1, 1, GETDATE(), 1, 2);
+
+
+OPERATION 3: Add Order Items
+INSERT INTO order_items (order_id, item_id, product_id, quantity, list_price, discount)
+VALUES (1, 1, 101, 2, 5000, 0.1);
+
+
+OPERATION 4: Update Stock (Manual Simulation)
+UPDATE stocks
+SET quantity = quantity - 2
+WHERE product_id = 101 AND store_id = 1;
+
+
+5. AUTOMATION USING TRIGGERS
+Auto-Reduce Stock on Order
+CREATE TRIGGER trg_reduce_stock
+ON order_items
+AFTER INSERT
+AS
+BEGIN
+    UPDATE s
+    SET s.quantity = s.quantity - i.quantity
+    FROM stocks s
+    JOIN inserted i ON s.product_id = i.product_id;
+END;
+
+
+6. STORED PROCEDURES (REAL BUSINESS LOGIC)
+
+Procedure: Place Order
+CREATE PROCEDURE PlaceOrder
+    @customer_id INT,
+    @store_id INT,
+    @staff_id INT
+AS
+BEGIN
+    INSERT INTO orders (customer_id, order_status, order_date, store_id, staff_id)
+    VALUES (@customer_id, 1, GETDATE(), @store_id, @staff_id);
+END;
+
+
+Procedure: Add Order Item
+CREATE PROCEDURE AddOrderItem
+    @order_id INT,
+    @product_id INT,
+    @quantity INT
+AS
+BEGIN
+    DECLARE @price DECIMAL(10,2);
+
+    SELECT @price = list_price FROM products WHERE product_id = @product_id;
+
+    INSERT INTO order_items (order_id, item_id, product_id, quantity, list_price, discount)
+    VALUES (@order_id, 1, @product_id, @quantity, @price, 0);
+END;
+
+
+7. VIEWS (BUSINESS REPORTS)
+
+View: Customer Order Summary
+CREATE VIEW customer_summary AS
+SELECT c.customer_id, c.first_name, COUNT(o.order_id) AS total_orders
+FROM customers c
+LEFT JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.first_name;
+
+
+View: Product Sales Summary
+CREATE VIEW product_sales AS
+SELECT p.product_name, SUM(oi.quantity) AS total_sold
+FROM products p
+JOIN order_items oi ON p.product_id = oi.product_id
+GROUP BY p.product_name;
+
+
+8. ANALYTICS QUERIES (CORE OF PROJECT)
+
+1. Total Revenue
+SELECT SUM(quantity * list_price * (1 - discount)) AS revenue
+FROM order_items;
+
+
+2. Top 5 Products
+SELECT TOP 5 p.product_name, SUM(oi.quantity) AS total_sales
+FROM products p
+JOIN order_items oi ON p.product_id = oi.product_id
+GROUP BY p.product_name
+ORDER BY total_sales DESC;
+
+
+3. Sales by Store
+SELECT s.store_name, SUM(oi.quantity * oi.list_price) AS sales
+FROM stores s
+JOIN orders o ON s.store_id = o.store_id
+JOIN order_items oi ON o.order_id = oi.order_id
+GROUP BY s.store_name;
+
+
+4. Monthly Sales
+SELECT MONTH(order_date) AS month, SUM(oi.quantity * oi.list_price) AS revenue
+FROM orders o
+JOIN order_items oi ON o.order_id = oi.order_id
+GROUP BY MONTH(order_date);
+
+
+5. Low Stock Report
+SELECT p.product_name, s.quantity
+FROM stocks s
+JOIN products p ON s.product_id = p.product_id
+WHERE s.quantity < 5;
+
+
+9. ADVANCED SQL FEATURES
+
+1. Ranking (Top Staff)
+SELECT staff_id,
+       COUNT(order_id) AS total_orders,
+       RANK() OVER (ORDER BY COUNT(order_id) DESC) AS rank_position
+FROM orders
+GROUP BY staff_id;
+
+
+2. Running Total
+SELECT order_date,
+       SUM(quantity * list_price) OVER (ORDER BY order_date) AS running_total
+FROM orders o
+JOIN order_items oi ON o.order_id = oi.order_id;
+
+
+10. BUSINESS SCENARIOS (REAL-WORLD SIMULATION)
+
+Scenario 1: Customer Purchase Flow
+Add customer
+Create order
+Add multiple items
+Stock reduces automatically
+
+Scenario 2: Inventory Alert
+Query runs daily
+Shows products below threshold
+
+Scenario 3: Store Performance
+Compare stores using revenue
+
+11. PROJECT DELIVERABLES
+You can present this project as:
+1. SQL Script File
+Tables
+Inserts
+Procedures
+Triggers
+Views
+2. Report Queries Document
+20–50 business queries
+3. Case Study Document
+Problem → Query → Output → Insight
+
+12. INTERVIEW-LEVEL QUESTIONS FROM THIS PROJECT
+Write query for second highest selling product
+Find customers with no orders
+Calculate revenue per category
+Find top staff per store
+Detect stock inconsistency
+
+13. EXTENSIONS (WITHOUT WEB)
+Export reports to Excel
+Schedule SQL jobs
+Use Power BI for visualization
+Add audit tables
+
+14. FINAL VALUE
+This project demonstrates:
+Real business understanding
+Advanced SQL skills
+Database design thinking
+Analytical reasoning
+Enterprise-level problem solving
+
